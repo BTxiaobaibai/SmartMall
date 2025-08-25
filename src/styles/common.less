@@ -1,0 +1,19 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.van-nav-bar {
+  .van-icon {
+    color: #000;
+    font-size: 20px;
+  }
+}
+
+.text-ellipsis-2{ // 文本控制在两行内，超出部分省略
+  overflow: hidden;
+  -webkit-line-clamp: 2; // 行数限制，两行
+  text-overflow: ellipsis; // 省略号
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
