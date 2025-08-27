@@ -6,7 +6,7 @@ import store from '@/store'
 // import router from '@/router'
 
 const request = axios.create({
-  baseURL: 'http://smart-shop.itheima.net/index.php?s=/api',
+  baseURL: 'https://smart-shop.itheima.net/index.php?s=/api',
   timeout: 5000
 })
 
