@@ -41,7 +41,12 @@
       </div>
     </div>
     <div class="introduce-title">商品描述</div>
-    <div class="goods-introduce" v-html="detail.content"></div>
+
+    <!-- ******** START: 核心修改点 1 ******** -->
+    <!-- 不再直接使用 detail.content，而是使用我们新创建的计算属性 processedContent -->
+    <div class="goods-introduce" v-html="processedContent"></div>
+    <!-- ******** END: 核心修改点 1 ******** -->
+
     <van-goods-action>
       <van-goods-action-icon icon="wap-home-o" text="首页" @click="$router.push('/home')"/>
       <van-goods-action-icon icon="shopping-cart-o" text="购物车" :badge="cartTotal > 0 ? 'cartTotal' : ''" @click="$router.push('/cart')"/>
@@ -96,7 +101,7 @@ export default {
   },
   async created () {
     const res = await getGoodsDetail(this.$route.params.id)
-    console.log(res)
+    // console.log(res) // created 钩子只负责获取原始数据
     this.detail = res.data.detail
     const comments = await getCommentsData({ goodsId: this.$route.params.id, limit: 3 })
     this.commentsList = comments.data.list
@@ -145,11 +150,33 @@ export default {
   },
   computed: {
     images () {
-      return this.detail.goods_images
+      // 增加一个安全检查，防止 detail 不存在时报错
+      return this.detail ? this.detail.goods_images : []
     },
     goodsId () {
       return this.$route.params.id
+    },
+
+    // ******** START: 核心修改点 2 ********
+    // 添加一个新的计算属性，专门用来处理富文本内容中的图片路径
+    processedContent () {
+      // 1. 安全检查：如果原始数据 this.detail.content 不存在，则返回空字符串
+      if (!this.detail.content) {
+        return ''
+      }
+
+      // 2. 定义要查找的目标域名
+      const targetDomain = 'https://uimgproxy.suning.cn'
+
+      // 3. 根据当前环境（本地开发或线上生产）选择不同的代理路径
+      const proxyPath = process.env.NODE_ENV === 'development'
+        ? '/suning_proxy' // 本地开发环境的代理路径 (对应 vue.config.js)
+        : '/proxy_suning' // 线上生产环境的代理路径 (对应 vercel.json)
+
+      // 4. 使用 replaceAll 方法，将所有目标域名替换为我们选择的代理路径
+      return this.detail.content.replaceAll(targetDomain, proxyPath)
     }
+    // ******** END: 核心修改点 2 ********
   },
   components: {
     CountBox

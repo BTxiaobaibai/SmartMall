@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+
+      "source": "/proxy_suning/:path*",
+      "destination": "https://uimgproxy.suning.cn/:path*"
+    }
+  ]
+}
