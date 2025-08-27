@@ -160,21 +160,24 @@ export default {
     // ******** START: 核心修改点 2 ********
     // 添加一个新的计算属性，专门用来处理富文本内容中的图片路径
     processedContent () {
-      // 1. 安全检查：如果原始数据 this.detail.content 不存在，则返回空字符串
+    // 1. 安全检查
       if (!this.detail.content) {
         return ''
       }
 
-      // 2. 定义要查找的目标域名
-      const targetDomain = 'https://uimgproxy.suning.cn'
+      // 2. 原始的、有问题的图片域名
+      const originalDomain = 'https://uimgproxy.suning.cn'
 
-      // 3. 根据当前环境（本地开发或线上生产）选择不同的代理路径
-      const proxyPath = process.env.NODE_ENV === 'development'
-        ? '/suning_proxy' // 本地开发环境的代理路径 (对应 vue.config.js)
-        : '/proxy_suning' // 线上生产环境的代理路径 (对应 vercel.json)
+      // 3. 我们使用的免费、公共图片代理服务前缀
+      // 这里我们使用了 images.weserv.nl，它非常稳定可靠
+      const proxyPrefix = 'https://images.weserv.nl/?url='
 
-      // 4. 使用 replaceAll 方法，将所有目标域名替换为我们选择的代理路径
-      return this.detail.content.replaceAll(targetDomain, proxyPath)
+      // 4. 执行替换！
+      // 这一次，我们把 "https://uimgproxy.suning.cn"
+      // 替换为 "https://images.weserv.nl/?url=uimgproxy.suning.cn"
+      // 注意：我们去掉了目标域名中的 https://
+      const targetDomainWithoutProtocol = 'uimgproxy.suning.cn'
+      return this.detail.content.replaceAll(originalDomain, proxyPrefix + targetDomainWithoutProtocol)
     }
     // ******** END: 核心修改点 2 ********
   },
