@@ -10,7 +10,7 @@ https://img.shields.io/badge/Vue.js-2.x-brightgreen.svg
 
 这是一个基于 Vue 2 全家桶技术栈开发的、功能完备的移动端电商项目。项目实现了从用户登录到商品浏览、购物车、下单支付的完整业务闭环。
 
-**在线演示地址:** [https://smart-mall-le84s36si-xiaobaibais-projects-497e88ee.vercel.app](https://www.google.com/url?sa=E&q=https%3A%2F%2Fsmart-mall-le84s36si-xiaobaibais-projects-497e88ee.vercel.app)
+**在线演示地址:** [btxiaobaibai.github.io/smart-mall](https://btxiaobaibai.github.io/smart-mall/)
 
 ## ✨ 项目特色 (Features)
 
@@ -26,13 +26,8 @@ https://img.shields.io/badge/Vue.js-2.x-brightgreen.svg
 
 | 首页                                                  | 分类页                                                       | 购物车                                                | 我的                                                  | 订单                                                   |
 | ----------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------ |
-| <img src="./docs/images/home-image.png" width="250"/> | <img src="./docs/images/classification-image.png" width="250"/> | <img src="./docs/images/cart-image.png" width="250"/> | <img src="./docs/images/user-image.png" width="250"/> | <img src="./docs/images/order-image.png" width="250"/> |
+| <img src="./picture/images/home-image.png" width="250"/> | <img src="./picture/images/classification-image.png" width="250"/> | <img src="./picture/images/cart-image.png" width="250"/> | <img src="./picture/images/user-image.png" width="250"/> | <img src="./picture/images/order-image.png" width="250"/> |
 
-**如何添加截图：**
-
-1. 在项目根目录下创建一个文件夹，例如 docs/images。
-2. 将您的项目截图（如 home.png, cart.png）放入该文件夹。
-3. 修改上面表格中的 src 路径，例如：src="./docs/images/home.png"。
 
 ## 🛠️ 技术栈 (Technology Stack)
 
