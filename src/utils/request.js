@@ -18,11 +18,10 @@ request.interceptors.request.use(function (config) {
     loadingType: 'spinner',
     duration: 0
   })
-
+  config.headers.platform = 'H5'
   const token = store.getters.token
   if (token) {
     config.headers['Access-Token'] = token
-    config.headers.platform = 'H5'
   }
   return config
 }, function (error) {
