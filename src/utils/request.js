@@ -5,8 +5,14 @@ import { Toast } from 'vant'
 import store from '@/store'
 // import router from '@/router'
 
+// const request = axios.create({
+//   baseURL: 'https://smart-shop.itheima.net/index.php?s=/api',
+//   timeout: 5000
+// })
+
+// 新增工程化配置文件
 const request = axios.create({
-  baseURL: 'https://smart-shop.itheima.net/index.php?s=/api',
+  baseURL: process.env.VUE_APP_API_BASE_URL, // 从环境变量中读取 baseURL
   timeout: 5000
 })
 
